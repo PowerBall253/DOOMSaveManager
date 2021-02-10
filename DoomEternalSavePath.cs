@@ -21,8 +21,9 @@ namespace DOOMSaveManager
         public DoomEternalSavePlatform Platform;
         public bool Encrypted = true;
 
-        public static string BnetSavePath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.UserProfile), "Saved Games", "id Software", "DOOMEternal", "base", "savegame");
-        public static string SteamSavePath = Path.Combine(Utilities.GetSteamPath(), "userdata");
+        public static string gamePath = Utilities.GetGamePath();
+        public static string BnetSavePath = Path.Combine(gamePath, "Saved Games", "id Software", "DOOMEternal", "base", "savegame");
+        public static string SteamSavePath = Path.Combine(gamePath, "userdata");
 
         public DoomEternalSavePath(string id, DoomEternalSavePlatform platform, bool encrypted = true) {
             Identifier = id;

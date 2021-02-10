@@ -11,11 +11,12 @@ namespace DOOMSaveManager
 {
     public class DoomEternal
     {
+        public static string steamPath = Utilities.GetGamePath();
         public const string GameName = "Doom Eternal";
 
         public const int SteamGameID = 782330;
         public static string SteamSavePath = "";
-        public static string BnetSavePath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.UserProfile), "Saved Games", "id Software", "DOOMEternal", "base", "savegame");
+        public static string BnetSavePath = Path.Combine(Utilities.GetGamePath(), "Saved Games", "id Software", "DOOMEternal", "base", "savegame");
 
         public static DoomEternalSavePathCollection Saves;
 
@@ -30,7 +31,6 @@ namespace DOOMSaveManager
                 }
             }
 
-            string steamPath = Utilities.GetSteamPath();
             if (!string.IsNullOrEmpty(steamPath)) {
                 SteamSavePath = Path.Combine(steamPath, "userdata");
                 if (Directory.Exists(SteamSavePath)) {

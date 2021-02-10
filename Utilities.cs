@@ -13,10 +13,31 @@ namespace DOOMSaveManager
 {
     public static class Utilities
     {
-        public static string GetSteamPath() {
-            using (var reg = Registry.LocalMachine.OpenSubKey(@"SOFTWARE\Wow6432Node\Valve\Steam")) {
-                return (string)reg.GetValue("InstallPath", "");
+        public static string GetGamePath() {
+            string gamePath;
+            string platform;
+            if (!String.IsNullOrEmpty(DoomEternal.steamPath))
+                return DoomEternal.steamPath;
+            if (!String.IsNullOrEmpty(DoomEternalSavePath.gamePath))
+                return DoomEternalSavePath.gamePath;
+            Console.Write("Do you own the game on Steam or Bethesda.net? (S/B) ");
+            platform = Console.ReadLine();
+            if (platform == "B" || platform == "b")
+            {
+                Console.Write("Enter the path to the user folder in your Wine bottle: ");
+                gamePath = Console.ReadLine();
             }
+            else
+            {
+                Console.Write("Enter the path to your Steam folder: ");
+                gamePath = Console.ReadLine();
+            }
+            if (!(Directory.Exists(Path.Combine(gamePath, "Saved Games")) || Directory.Exists(Path.Combine(gamePath, "userdata"))))
+            {
+                Console.WriteLine("ERROR: The specified directory is not valid.");
+                System.Environment.Exit(1);
+            }
+            return gamePath;
         }
 
         public static byte[] RandomBytes(int size) {
