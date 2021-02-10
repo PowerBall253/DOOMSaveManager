@@ -1,10 +1,6 @@
 ### DOOMSaveManager
 
-A program to make importing and exporting DOOM saves easier.
-
-![Main Form](https://ishr.ink/JACh5pLs)
-
-![Transfer Form](https://ishr.ink/wODAQKya)
+A program to make importing and exporting DOOM saves easier, modified to work on Linux under Mono.
 
 ### Libraries Used:
 [SharpZipLib](https://github.com/icsharpcode/SharpZipLib)
