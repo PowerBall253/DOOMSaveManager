@@ -74,6 +74,7 @@ namespace DOOMSaveManager
 			cipher.Init(false, cParams);
 			byte[] plaintext = new byte[cipher.GetOutputSize(ciphertext.Length)];
 			int retLen = cipher.ProcessBytes(ciphertext, 0, ciphertext.Length, plaintext, 0);
+			cipher.DoFinal(plaintext, retLen);
 
 			return plaintext;
 		}
